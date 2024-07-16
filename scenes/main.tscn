@@ -1,0 +1,96 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgdxwbd1r0sju"]
+
+[ext_resource type="PackedScene" uid="uid://hkao6bsgsbjo" path="res://scenes/wall.tscn" id="1_eianu"]
+[ext_resource type="PackedScene" uid="uid://b120888exoe6x" path="res://scenes/player.tscn" id="2_cahfq"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7m7u0"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_vnvwd"]
+sky_material = SubResource("ProceduralSkyMaterial_7m7u0")
+
+[sub_resource type="Environment" id="Environment_obi7n"]
+background_mode = 2
+sky = SubResource("Sky_vnvwd")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_s8tes"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jmv2t"]
+
+[node name="Main" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_obi7n")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Wall" parent="." instance=ExtResource("1_eianu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0, -2)
+
+[node name="Wall2" parent="." instance=ExtResource("1_eianu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
+
+[node name="Wall3" parent="." instance=ExtResource("1_eianu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4, 0, 2)
+
+[node name="Wall4" parent="." instance=ExtResource("1_eianu")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 0, 4)
+
+[node name="Wall5" parent="." instance=ExtResource("1_eianu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
+
+[node name="Wall6" parent="." instance=ExtResource("1_eianu")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, 4)
+
+[node name="Wall7" parent="." instance=ExtResource("1_eianu")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0, 2)
+
+[node name="Wall8" parent="." instance=ExtResource("1_eianu")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 0, -2)
+
+[node name="Floor" parent="." instance=ExtResource("1_eianu")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2, -1, -1)
+
+[node name="Floor1" parent="." instance=ExtResource("1_eianu")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -2, -1, -1)
+
+[node name="Floor2" parent="." instance=ExtResource("1_eianu")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2, -1, 3)
+
+[node name="Floor3" parent="." instance=ExtResource("1_eianu")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -2, -1, 3)
+
+[node name="Ceiling" parent="." instance=ExtResource("1_eianu")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 2, 3, 1)
+
+[node name="Ceiling1" parent="." instance=ExtResource("1_eianu")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 2, 3, -3)
+
+[node name="Ceiling2" parent="." instance=ExtResource("1_eianu")]
+transform = Transform3D(0.999916, 0.0129849, -5.67587e-10, 0, -4.37114e-08, -1, -0.0129849, 0.999916, -4.37077e-08, -2, 3, 1)
+
+[node name="Wall9" parent="." instance=ExtResource("1_eianu")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -2, 3, -3)
+
+[node name="Player" parent="." instance=ExtResource("2_cahfq")]
+
+[node name="Rock" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Rock"]
+mesh = SubResource("BoxMesh_s8tes")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock"]
+shape = SubResource("BoxShape3D_jmv2t")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8, 1, 0)
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -2.98023e-08, 1, 0, -1, -2.98023e-08, 0, 7, 0)
+current = true

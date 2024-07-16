@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://b120888exoe6x"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_vcsoi"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3l73t"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_a2yjv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_egk4v"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_t15dv"]
+material = SubResource("StandardMaterial3D_egk4v")
+top_radius = 0.2
+bottom_radius = 0.2
+height = 0.1
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_vcsoi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_3l73t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_a2yjv")
+
+[node name="HeadPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.60073, 0)
+
+[node name="Camera3D" type="Camera3D" parent="HeadPivot"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HeadPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.051203, 0.998688, 0, -0.998688, 0.051203, 0, 0, -0.462754)
+mesh = SubResource("CylinderMesh_t15dv")
